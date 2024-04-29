@@ -111,7 +111,7 @@
       //
       {
         id: 'Go to User',
-        title: 'Go to user profile',
+        title: (searchQuery) => `User profile for ${searchQuery}`,
         mdIcon: 'person',
         matcher: (searchQuery) => searchQuery.match(/.+@.+/),
         handler: (action, searchQuery) => {

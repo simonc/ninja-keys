@@ -1,6 +1,6 @@
 export interface INinjaAction {
   id: string;
-  title: string;
+  title: string | Function;
   hotkey?: string;
   handler?: Function;
   matcher?: Function;

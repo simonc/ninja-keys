@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add defining the action `title` as a function
+
 - Add passing the search query to the action handler for dynamic handling
 
 - Add a `matcher` property to actions to allow dynamic matching

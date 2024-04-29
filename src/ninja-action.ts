@@ -86,6 +86,9 @@ export class NinjaAction extends LitElement {
   @property({type: Boolean})
   selected = false;
 
+  @property({type: String})
+  search = '';
+
   /**
    * Display hotkey as separate buttons on UI or as is
    */
@@ -165,6 +168,14 @@ export class NinjaAction extends LitElement {
       'ninja-action': true,
     };
 
+    let actionTitle;
+    if (this.action.title instanceof Function) {
+      actionTitle = this.action.title(this.search);
+    }
+    else {
+      actionTitle = this.action.title;
+    }
+
     return html`
       <div
         class="ninja-action"
@@ -172,7 +183,7 @@ export class NinjaAction extends LitElement {
         class=${classMap(classes)}
       >
         ${icon}
-        <div class="ninja-title">${this.action.title}</div>
+        <div class="ninja-title">${actionTitle}</div>
         ${hotkey}
       </div>
     `;

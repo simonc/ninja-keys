@@ -362,12 +362,21 @@ export class NinjaKeys extends LitElement {
 
     const actionMatches = this._flatData.filter((action) => {
       const regex = new RegExp(this._search, 'gi');
+
+      let actionTitle;
+      if (action.title instanceof Function) {
+        actionTitle = action.title();
+      }
+      else {
+        actionTitle = action.title;
+      }
+
       let matcher;
       if (action.matcher) {
         matcher = action.matcher(this._search);
       }
       else {
-        matcher = action.title.match(regex) || action.keywords?.match(regex);
+        matcher = actionTitle.match(regex) || action.keywords?.match(regex);
       }
 
       if (!this._currentRoot && this._search) {
@@ -407,6 +416,7 @@ export class NinjaKeys extends LitElement {
             @actionsSelected=${(event: CustomEvent<INinjaAction>) =>
               this._actionSelected(event.detail)}
             .action=${action}
+            .search=${this._search}
           ></ninja-action>`
       )}`;
 

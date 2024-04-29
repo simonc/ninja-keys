@@ -93,7 +93,7 @@ Add the tag to your HTML.
     },
     {
       id: 'Users',
-      title: 'Go to user profile',
+      title: (searchQuery) => `User profile for ${searchQuery}`,
       icon: 'person',
       matcher: (searchQuery) => searchQuery.match(/.+@.+/),
       handler: (action, searchQuery) => {
@@ -176,7 +176,7 @@ Array of `INinjaAction` - interface properties below
 | Name     | Type                    | Description                                                                            |
 |----------|-------------------------|----------------------------------------------------------------------------------------|
 | id       | string                  | Unique id/text. Will be displayed as breadcrumb in multimenu                           |
-| title    | string                  | Title of action                                                                        |
+| title    | string or Function      | Title of action, can be static or dynamic                                              |
 | hotkey   | string(optional)        | Shortcut to display and register                                                       |
 | handler  | Function(optional)      | Function to execute on select                                                          |
 | matcher  | Function(optional)      | Function to execute on search. Return true if action should be displayed               |
